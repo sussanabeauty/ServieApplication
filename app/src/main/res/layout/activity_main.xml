@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -8,46 +8,75 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <SeekBar
+        android:id="@+id/sb_track_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
     <Button
         android:id="@+id/startMusic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start Music!"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="35dp"
         android:layout_gravity="center_horizontal"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sb_track_progress" />
 
-    <Button
+<!--    <ImageButton-->
+<!--        android:id="@+id/startMusic"-->
+<!--        android:src="@drawable/ic_forward"-->
+<!--        android:layout_marginLeft="66dp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Start Music!"-->
+<!--        android:layout_marginTop="35dp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/sb_track_progress" />-->
+
+    <ImageButton
         android:id="@+id/btnPauseMusic"
+        android:src="@drawable/ic_pause"
+        android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pause Music!"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="35dp"
         android:layout_gravity="center_horizontal"
-        />
+        app:layout_constraintStart_toEndOf="@id/startMusic"
+        app:layout_constraintTop_toBottomOf="@id/sb_track_progress" />
 
-    <Button
-        android:id="@+id/btnPlayMusic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Play Music!"
-        android:layout_marginTop="66dp"
-        android:layout_gravity="center_horizontal"
-        />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnStopMusic"
+        android:src="@drawable/ic_stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Stop Music!"
-        android:layout_marginTop="66dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_marginTop="35dp"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintStart_toEndOf="@id/btnPauseMusic"
+        app:layout_constraintTop_toBottomOf="@id/sb_track_progress" />
+
+    <ImageButton
+        android:id="@+id/btnPlayMusic"
+        android:src="@drawable/ic_play"
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play Music!"
+        android:layout_marginTop="35dp"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintStart_toEndOf="@id/btnStopMusic"
+        app:layout_constraintTop_toBottomOf="@id/sb_track_progress" />
 
 
-    <SeekBar
-        android:id="@+id/sb_track_progress"
-        android:layout_marginTop="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
