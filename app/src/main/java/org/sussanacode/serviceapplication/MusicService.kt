@@ -18,6 +18,8 @@ class MusicService : Service() {
     override fun onCreate() {
         super.onCreate()
 
+      //  startForeground()
+
 //        mediaPlayer = MediaPlayer()
     }
 
