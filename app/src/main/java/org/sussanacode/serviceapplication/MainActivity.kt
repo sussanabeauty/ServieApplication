@@ -3,6 +3,7 @@ package org.sussanacode.serviceapplication
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
@@ -37,6 +38,11 @@ class MainActivity : AppCompatActivity() {
         binding.startMusic.setOnClickListener {
             val serviceIntent = Intent(baseContext, MusicService::class.java)
             bindService(serviceIntent, serviceConnection, BIND_AUTO_CREATE)
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                startForegroundService(serviceIntent)
+            else
+                startService(serviceIntent)
         }
 
         binding.btnPauseMusic.setOnClickListener {

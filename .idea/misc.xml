@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Apolis_Android/Android_Class/ServiceApplication/app/src/main/res/drawable/ic_music_note.xml" value="0.11296296296296296" />
+        <entry key="..\:/Apolis_Android/Android_Class/ServiceApplication/app/src/main/res/drawable/ic_pause.xml" value="0.11296296296296296" />
+        <entry key="..\:/Apolis_Android/Android_Class/ServiceApplication/app/src/main/res/drawable/ic_play.xml" value="0.11296296296296296" />
+        <entry key="..\:/Apolis_Android/Android_Class/ServiceApplication/app/src/main/res/drawable/ic_stop.xml" value="0.11296296296296296" />
         <entry key="..\:/Apolis_Android/Android_Class/ServiceApplication/app/src/main/res/layout/activity_main.xml" value="0.2" />
       </map>
     </option>
