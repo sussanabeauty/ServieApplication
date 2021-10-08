@@ -41,16 +41,16 @@ class MusicService : Service() {
 
         val playIntent = Intent(baseContext, MusicService::class.java)
         playIntent.putExtra("cmd", "play")
-        val pendingIntentPlay = PendingIntent.getService(this, id, playIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntentPlay = PendingIntent.getService(this, Random.nextInt(50000), playIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val pauseIntent = Intent(baseContext, MusicService::class.java)
         pauseIntent.putExtra("cmd", "pause")
-        val pendingIntentPause = PendingIntent.getService(this, id, pauseIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntentPause = PendingIntent.getService(this, Random.nextInt(50000), pauseIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
 
         val stopIntent = Intent(baseContext, MusicService::class.java)
         stopIntent.putExtra("cmd", "stop")
-        val pendingIntentStop = PendingIntent.getService(this, id, stopIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntentStop = PendingIntent.getService(this, Random.nextInt(50000), stopIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val contentIntent = Intent(baseContext, MainActivity::class.java)
         val piActivity = PendingIntent.getActivity(baseContext, id, contentIntent, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -117,17 +117,24 @@ class MusicService : Service() {
     private fun stopMusic() {
         mediaPlayer.stop()
         mediaPlayer.release()
+
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            stopForeground(true)
+            stopSelf()
+        }else
+            stopSelf()
     }
 
     private fun playMusic() {
-        if(!mediaPlayer.isPlaying){
+        if(this::mediaPlayer.isInitialized && !mediaPlayer.isPlaying){
             mediaPlayer.start()
         }
     }
 
     private fun pauseMusic() {
 
-        if(mediaPlayer.isPlaying){
+        if(this::mediaPlayer.isInitialized && mediaPlayer.isPlaying){
             mediaPlayer.pause()
         }
 
@@ -136,8 +143,11 @@ class MusicService : Service() {
 
     private fun startMusic() {
 
+       // val musicPath = "https://nl03.moozix.com/31427eed5cdcd6ad3c45e/Hallelujah.mp3"
+        //"C:\\Users\\Sussana Beauty Kwabi\\Music\\iTunes\\Album Artwork\\Download\\Ntokozo_Mbambo_Joe_Mettle_-_Amen"
+
         mediaPlayer = MediaPlayer()
-        mediaPlayer.setDataSource("/Music/iTunes/Album Artwork/Download/Hallelujah-Tori_Kelly")
+        mediaPlayer.setDataSource("C:\\Users\\Sussana Beauty Kwabi\\Music\\iTunes\\Album Artwork\\Download\\Ntokozo_Mbambo_Joe_Mettle_-_Amen")
 
         mediaPlayer.setOnPreparedListener {
             it.start()
@@ -150,30 +160,6 @@ class MusicService : Service() {
     }
 
 
-//    private fun startMusic() {
-//
-//        //"C:\Users\Sussana Beauty Kwabi\Music\iTunes\Album Artwork\Download\Ntokozo_Mbambo_Joe_Mettle_-_Amen"
-//       // "C:/Users/Sussana Beauty Kwabi/Music/iTunes/Album Artwork/Download/Ntokozo_Mbambo_Joe_Mettle_-_Amen"
-//
-//        mediaPlayer = MediaPlayer()
-//
-//        val musicPath = "https://nl03.moozix.com/31427eed5cdcd6ad3c45e/Hallelujah.mp3"
-//
-//        val file = File(musicPath)
-//        val inputStream = FileInputStream(file)
-//
-//        //mediaPlayer.setDataSource("C:\\Users\\Sussana Beauty Kwabi\\Music\\iTunes\\Album Artwork\\Download\\Ntokozo_Mbambo_Joe_Mettle_-_Amen")
-//        mediaPlayer.setDataSource(inputStream.fd)
-//
-//        mediaPlayer.setOnPreparedListener {
-//            it.start()
-//            isMediaPlayerReady = true
-//        }
-//
-//        mediaPlayer.prepareAsync()
-//        inputStream.close()
-//
-//    }
 
     override fun onDestroy() {
         super.onDestroy()
